@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getPost, getUser, mockCarSpecs } from "@/lib/api";
 import CarSpecs from "@/components/CarSpecs";
-
+import car from '../../assest/post.png'; 
+import AllCategorySection from "@/components/Allcategory";
 export default async function PostPage({ params }: { params: { id: string } }) {
   try {
     const post = await getPost(params.id);
@@ -47,11 +48,11 @@ export default async function PostPage({ params }: { params: { id: string } }) {
 
           {/* Featured Image */}
           <div className="mb-8">
-            <img
-              src="https://unsplash.com/photos/a-concept-car-is-shown-in-the-dark-V1DFo8C4JPA"
-              alt="Test Car"
-              className="w-full h-96 object-cover rounded-lg"
-            />
+             <img 
+  src={car.src}
+  alt="Test Car"
+  className="w-full h-96 object-cover rounded-lg"
+/>
           </div>
 
           {/* Content */}
@@ -78,43 +79,8 @@ export default async function PostPage({ params }: { params: { id: string } }) {
           {/* Car Specs */}
           <CarSpecs specs={specs} />
 
-          {/* All Categories Section */}
-          <div className="mt-12 pt-8 border-t border-gray-200">
-            <h3 className="text-2xl font-bold mb-6">All Categories</h3>
-            <div className="grid md:grid-cols-4 gap-6">
-              {[
-                {
-                  name: "Car Reviews",
-                  icon: "🚗",
-                  desc: "Latest car reviews and ratings",
-                },
-                {
-                  name: "Maintenance Tips",
-                  icon: "🔧",
-                  desc: "Keep your car in perfect condition",
-                },
-                {
-                  name: "Car Modifications",
-                  icon: "⚙️",
-                  desc: "Customize and upgrade your ride",
-                },
-                {
-                  name: "Driving Tips",
-                  icon: "🛣️",
-                  desc: "Improve your driving skills",
-                },
-              ].map((category) => (
-                <div
-                  key={category.name}
-                  className="text-center p-6 bg-gray-50 rounded-lg"
-                >
-                  <div className="text-4xl mb-3">{category.icon}</div>
-                  <h4 className="font-semibold mb-2">{category.name}</h4>
-                  <p className="text-sm text-gray-600">{category.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <AllCategorySection/>
+          
         </div>
       </div>
     );

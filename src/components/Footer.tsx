@@ -1,3 +1,5 @@
+import button from '../app/assest/Group 8.png'
+import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-12 mt-16">
@@ -28,18 +30,18 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Subscribe</h4>
             <p className="text-gray-400 mb-4">Get latest updates and news</p>
-            <div className="flex">
+            <div className="flex mr-20">
               <input 
                 type="email" 
                 placeholder="Your email"
-                className="flex-1 px-4 py-2 rounded-l-lg text-black"
+                className="flex-1 px-4 py-2 rounded-l-lg text-black bg-white border-2"
               />
-              <button className="bg-secondary px-4 py-2 rounded-r-lg">Subscribe</button>
+              <Image src={button} alt="Subscribe" className="inline-block" />
             </div>
           </div>
         </div>
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 CarBlog. All rights reserved.</p>
+          <p>&copy; 2025 CarBlog. All rights reserved.</p>
         </div>
       </div>
     </footer>

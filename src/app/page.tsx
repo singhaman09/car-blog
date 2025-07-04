@@ -14,11 +14,7 @@ import r1 from './assest/r1.png';
 import r2 from './assest/r2.png';
 import r3 from './assest/r3.png';
 import r4 from './assest/r4.png';
-
-import e1 from './assest/e1.png';
-import e2 from './assest/e2.png';
-import e3 from './assest/e3.png';
-import e4 from './assest/e4.jpg';
+import AllCategorySection from "../components/Allcategory";
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -27,7 +23,6 @@ export default function Home() {
   const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const allCategoryImages = [e1, e2, e3, e4];
   const newTechImages = [r1, r2, r3, r4];
 
   const categories = ["EV", "Hybrid", "Luxury", "SUV"];
@@ -84,28 +79,31 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section
-        className="bg-cover bg-center bg-no-repeat text-white py-30"
-        style={{ backgroundImage: `url('/assests/car.jpeg')` }}
-      >
-        <div className="container mx-auto px-6 text-left">
-          <h1 className="text-5xl font-bold mb-6">
-            Your Journey
-            <br />
-            Your Car
-            <br />
-            <span className="text-secondary">Your Way</span>
-          </h1>
-          <p className="text-xl mb-8 max-w-2xl text-left">
-            Discover the latest car reviews, automotive insights, and expert
-            tips to help you make the perfect choice for your next vehicle.
-          </p>
-          <Image src={button} alt="Subscribe" className="inline-block mr-2" />
-        </div>
-      </section>
+     <section
+  className="bg-cover bg-center bg-no-repeat text-white py-30"
+  style={{ backgroundImage: `url('/assests/car.jpeg')` }}
+>
+  <div className="container mx-auto px-6 flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+    
+    {/* Text content (left side) */}
+    <div className="w-full md:w-1/2 text-center md:text-left">
+      <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-tight">
+        Your Journey<br />
+        Your Car<br />
+        <span className="text-[#FF5959]">Your Way</span>
+      </h1>
+      <p className="text-xl mb-8 max-w-lg mx-auto md:mx-0">
+        Discover the latest car reviews, automotive insights, and expert
+        tips to help you make the perfect choice for your next vehicle.
+      </p>
+      <Image src={button} alt="Subscribe" className="inline-block mr-2 hover:scale-105 transition-transform" />
+    </div>
+    <div className="w-full md:w-1/2 hidden md:block h-[400px]"></div>
 
-      <div className="container mx-auto px-6 py-16">
-        {/* ROW 1: Latest + Trending */}
+  </div>
+</section>
+
+<div className="mx-auto max-w-[90rem] px-10 py-16">
         <div className="grid md:grid-cols-2 gap-12">
           {/* Latest Post */}
           <section className="flex flex-col justify-between">
@@ -141,15 +139,15 @@ export default function Home() {
               if (!author) return null;
 
               return (
-                <div
+                <div 
                   key={post.id}
                   className={`p-6 rounded-lg shadow-md ${
-                    post.id % 2 === 0 ? 'bg-secondary text-white' : 'bg-white'
+                    post.id === 3 ? 'bg-red-400 text-white' : 'bg-white'
                   }`}
                 >
                   <div className="text-sm mb-1">
-                    By{' '}
-                    <span className="text-red-500 font-medium">
+                    By{' '} 
+                    <span className={`text-red-500 font-medium ${post.id === 3 ? 'text-white' : ''}`}> 
                       {author.name}
                     </span>{' '}
                     | Aug 23, 2023
@@ -172,7 +170,7 @@ export default function Home() {
           </section>
         </div>
 
-        {/* ROW 2: New Technology Section */}
+        {/*New Technology */}
         <section className="mt-16">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold py-4">New Technology</h2>
@@ -183,7 +181,7 @@ export default function Home() {
             {posts.slice(0, 4).map((post, index) => {
               const author = users.find((user) => user.id === post.userId);
               return author ? (
-                <div key={post.id} className="group cursor-pointer">
+                <div key={post.id} className="bg-[#F4F0F8] group cursor-pointer hover:border-2 border-black rounded-lg p-5 hover:shadow-lg transition-shadow">
                   <div className="relative overflow-hidden rounded-lg mb-4">
                     <Image
                       src={newTechImages[index]}
@@ -207,45 +205,12 @@ export default function Home() {
             })}
           </div>
         </section>
+       <AllCategorySection/>
 
-        {/* ROW 3: All Category Section */}
-        <section className="mt-16">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold py-4">All Category</h2>
-            <div className="h-0.5 bg-gray-300 flex-1 ml-8"></div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { title: "Car Reviews", image: allCategoryImages[0], description: "Lorem ipsum dolor sit amet consectetur. Urna dignissim in elementum ut.", bgColor: "bg-purple-100" },
-              { title: "Maintenance Tips", image: allCategoryImages[1], description: "Lorem ipsum dolor sit amet consectetur. Urna dignissim in elementum ut.", bgColor: "bg-blue-100" },
-              { title: "Car Modifications", image: allCategoryImages[2], description: "Lorem ipsum dolor sit amet consectetur. Urna dignissim in elementum ut.", bgColor: "bg-gray-100" },
-              { title: "Driving Tips", image: allCategoryImages[3], description: "Lorem ipsum dolor sit amet consectetur. Urna dignissim in elementum ut.", bgColor: "bg-green-100" }
-            ].map((category, index) => (
-              <div key={index} className={`${category.bgColor} p-6 rounded-lg text-center group cursor-pointer hover:shadow-lg transition-shadow`}>
-                <div className="relative w-16 h-16 mx-auto mb-4">
-                  <Image
-                    src={category.image}
-                    alt={category.title}
-                    className="w-full h-full object-cover rounded-full border-4 border-white shadow-md"
-                  />
-                </div>
-                <h3 className="font-bold text-lg mb-2 text-gray-800">
-                  {category.title}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {category.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Testimonials Section */}
-        <section className="mt-16 bg-gray-900 text-white py-16 px-8 rounded-lg">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              {/* Left Side - Testimonials Header */}
+        {/* Testimonials */}
+        <section className="relative left-1/2 right-1/2 ml-[-49.7vw] mr-[-50vw] w-screen bg-gray-900 text-white py-19 mt-16">
+  <div className="max-w-[90rem] mx-auto px-6">
+    <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <p className="text-sm uppercase tracking-wide text-gray-400 mb-2">TESTIMONIALS</p>
                 <h2 className="text-4xl font-bold mb-6">
@@ -257,7 +222,6 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Right Side - Testimonial Content */}
               <div className="relative">
                 <div className="mb-8">
                   <p className="text-xl leading-relaxed mb-6">
@@ -294,6 +258,42 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <section className="mt-16">
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-3xl font-bold py-4">New Technology</h2>
+            <p className="text-gray-600 cursor-pointer hover:text-gray-800">See all</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {posts.slice(0, 4).map((post, index) => {
+              const author = users.find((user) => user.id === post.userId);
+              return author ? (
+                <div key={post.id} className="bg-[#F4F0F8] group cursor-pointer hover:border-2 border-black rounded-lg p-5 hover:shadow-lg transition-shadow">
+                  <div className="relative overflow-hidden rounded-lg mb-4">
+                    <Image
+                      src={newTechImages[index]}
+                      alt={`New Technology ${index + 1}`}
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <h3 className="font-semibold text-lg mb-2 line-clamp-2 group-hover:text-red-500 transition-colors">
+                    {post.title}
+                  </h3>
+                  <div className="flex items-center space-x-2 text-sm text-gray-500">
+                    <div className="flex items-center space-x-1">
+                      <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
+                      <span>{author.name}</span>
+                    </div>
+                    <span>•</span>
+                    <span>Dec 15</span>
+                  </div>
+                </div>
+              ) : null;
+            })}
+          </div>
+        </section>
+
       </div>
     </>
   );

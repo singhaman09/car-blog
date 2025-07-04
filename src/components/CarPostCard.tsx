@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Post, User } from '@/types';
-import car from '../app/assest/post.png'; // Assuming you have a car image in your assets
+import car from '../app/assest/post.png'; 
 
 interface Props {
   post: Post;
