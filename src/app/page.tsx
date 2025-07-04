@@ -1,14 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import CarPostCard from "@/components/CarPostCard";
-import SearchBar from "@/components/SearchBar";
-import CategoryFilter from "@/components/CategoryFilter";
 import { getPosts, getUser, mockCarSpecs } from "@/lib/api";
 import { Post, User } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import button from "./assest/Group 8.png";
-import car from "./assest/post.png"; // Assuming you have a car image in your assets
 // Top of your file
 import r1 from './assest/r1.png';
 import r2 from './assest/r2.png';
@@ -21,11 +18,11 @@ export default function Home() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchQuery] = useState("");
+  const [selectedCategory] = useState("All");
   const newTechImages = [r1, r2, r3, r4];
 
-  const categories = ["EV", "Hybrid", "Luxury", "SUV"];
+  // const categories = ["EV", "Hybrid", "Luxury", "SUV"];
 
   useEffect(() => {
     async function fetchData() {
@@ -225,7 +222,7 @@ export default function Home() {
               <div className="relative">
                 <div className="mb-8">
                   <p className="text-xl leading-relaxed mb-6">
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   </p>
                 </div>
 

@@ -1,10 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-import CarPostCard from "@/components/CarPostCard";
 import { getPosts, getUser, mockCarSpecs } from "@/lib/api";
 import { Post, User } from "@/types";
 import Image from "next/image";
-import Link from "next/link";
 import button from '../assest/Group 8.png';
 import r1 from '../assest/c1.png';
 import r2 from '../assest/c2.png';
@@ -17,8 +15,8 @@ export default function AllPostsPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchQuery] = useState("");
+  const [selectedCategory] = useState("All");
 
   useEffect(() => {
     async function fetchData() {

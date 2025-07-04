@@ -6,12 +6,12 @@ export default function About() {
         
         <div className="prose max-w-none">
           <p className="text-xl text-gray-600 mb-8">
-            Welcome to CarBlog - your ultimate destination for everything automotive. We're passionate about cars and dedicated to bringing you the most comprehensive, honest, and up-to-date information about the automotive world.
+            Welcome to CarBlog - your ultimate destination for everything automotive. We are passionate about cars and dedicated to bringing you the most comprehensive, honest, and up-to-date information about the automotive world.
           </p>
           
           <h2 className="text-2xl font-bold mb-4">Why CarBlog Exists</h2>
           <p className="mb-6">
-            In today's rapidly evolving automotive landscape, making informed decisions about vehicles has become more complex than ever. With the rise of electric vehicles, hybrid technology, autonomous driving features, and countless new models hitting the market every year, car buyers need a trusted source of information.
+            In today rapidly evolving automotive landscape, making informed decisions about vehicles has become more complex than ever. With the rise of electric vehicles, hybrid technology, autonomous driving features, and countless new models hitting the market every year, car buyers need a trusted source of information.
           </p>
           
           <p className="mb-8">
@@ -54,7 +54,7 @@ export default function About() {
           
           <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
           <p className="mb-6">
-            To empower car enthusiasts, buyers, and owners with the knowledge they need to make informed decisions about their vehicles. Whether you're looking to buy your first car, upgrade to an electric vehicle, or simply maintain your current ride, we're here to help.
+            To empower car enthusiasts, buyers, and owners with the knowledge they need to make informed decisions about their vehicles. Whether you are looking to buy your first car, upgrade to an electric vehicle, or simply maintain your current ride, we are here to help.
           </p>
           
           <div className="bg-secondary text-white p-8 rounded-lg text-center">

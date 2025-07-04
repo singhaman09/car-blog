@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getPost, getUser, mockCarSpecs } from "@/lib/api";
 import CarSpecs from "@/components/CarSpecs";
 import car from '../../assest/post.png'; 
+import Image from "next/image";
 import AllCategorySection from "@/components/Allcategory";
 export default async function PostPage({ params }: { params: { id: string } }) {
   try {
@@ -48,7 +49,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
 
           {/* Featured Image */}
           <div className="mb-8">
-             <img 
+             <Image
   src={car.src}
   alt="Test Car"
   className="w-full h-96 object-cover rounded-lg"

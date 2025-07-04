@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Post, User } from '@/types';
 import car from '../app/assest/post.png'; 
-
+import Image from 'next/image';
 interface Props {
   post: Post;
   author: User;
@@ -12,8 +12,8 @@ export default function CarPostCard({ post, author, category }: Props) {
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 my-4">
       <div className="relative">
-        <img 
-  src={car.src} // Use the imported car image
+        <Image
+  src={car.src}
   alt="Test Car"
   className="w-full h-96 object-cover rounded-lg"
 />
