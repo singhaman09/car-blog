@@ -34,7 +34,7 @@ export default function Home() {
 
         setPosts(postsData.slice(0, 20));
         setUsers(usersData);
-      } catch (err) {
+      } catch {
         setError("Failed to fetch data");
       } finally {
         setLoading(false);

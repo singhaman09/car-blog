@@ -5,7 +5,15 @@ import CarSpecs from "@/components/CarSpecs";
 import car from '../../assest/post.png'; 
 import Image from "next/image";
 import AllCategorySection from "@/components/Allcategory";
-export default async function PostPage({ params }: { params: { id: string } }) {
+
+
+type PostPageProps = {
+  params: {
+    id: string;
+  };
+};
+
+export default async function PostPage({ params }: PostPageProps) {
   try {
     const post = await getPost(params.id);
     const author = await getUser(post.userId);
@@ -85,7 +93,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
         </div>
       </div>
     );
-  } catch (error) {
+  } catch {
     notFound();
   }
 }
