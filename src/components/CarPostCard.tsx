@@ -16,6 +16,8 @@ export default function CarPostCard({ post, author, category }: Props) {
   src={car.src}
   alt="Test Car"
   className="w-full h-96 object-cover rounded-lg"
+  width={500}
+  height={300}
 />
 
         <div className="absolute top-4 left-4">

@@ -8,6 +8,7 @@ import r1 from '../assest/c1.png';
 import r2 from '../assest/c2.png';
 import r3 from '../assest/c3.png';
 import r4 from '../assest/c4.png';
+import Link from "next/link";
 const newTechImages = [r1, r2, r3, r4];
 
 export default function AllPostsPage() {
@@ -128,10 +129,12 @@ export default function AllPostsPage() {
   </div>
 </section>
       {/* Posts Section */}
-    <div className="container mx-auto px-10 py-16">
-  <h2 className="text-3xl font-bold mb-8">All Posts</h2>
+   <div className="container mx-auto px-10 py-16 bg-gradient-to-b from-gray-100 to-gray-50 cursor-pointer">
+  <h2 className="text-4xl font-extrabold text-gray-900 mb-10 text-center tracking-tight">
+    All Posts
+  </h2>
 
-  <div className="space-y-5">
+  <div className="space-y-10">
     {filteredPosts.map((post, index) => {
       const author = users.find((u) => u.id === post.userId);
       if (!author) return null;
@@ -142,35 +145,43 @@ export default function AllPostsPage() {
       return (
         <div
           key={post.id}
-          className="bg-white rounded-xl shadow-md flex items-center hover:shadow-lg transition-transform duration-300 ease-in-out transform hover:-translate-y-1 cursor-pointer"
+          className="flex bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-300"
         >
+          {/* Left Image */}
           <Image
             src={imageSrc}
             alt={post.title}
-            width={160}
-            height={110}
-            className="object-cover rounded-l-xl h-[250px] w-[360px]"
+            width={320}
+            height={240}
+            className="object-cover w-[320px] h-[240px]"
           />
-          <div className="p-32 flex-1">
-            <h3 className="font-semibold text-lg mb-1 line-clamp-1">
-              {post.title}
-            </h3>
-            <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-              By {author.name} | {new Date().toLocaleDateString()}
-            </p>
-            <button
-              className="text-sm text-white font-medium bg-[#FF5959] border border-[#FF5959] px-4 py-1.5 rounded-md transition duration-200 hover:bg-transparent hover:text-[#FF5959]"
-            >
-              Read More
-            </button>
+
+          {/* Right Content */}
+          <div className="p-6 flex flex-col justify-between flex-1">
+            <div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                {post.title}
+              </h3>
+              <div className="text-sm text-gray-500 mb-3">
+                {author.name} &bull; {new Date().toLocaleDateString()} &bull; 3 min read
+              </div>
+              <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-4">
+                {post.description || "Lorem ipsum dolor sit amet consectetur. Consectetur risus..."}
+              </p>
+            </div>
+
+                 <Link href={`/posts/${post.id}`}>
+                  <button className="text-sm font-semibold text-white bg-red-500 px-5 py-2 rounded-md hover:bg-red-600 transition-all duration-200">
+                    Read full article...
+                  </button>
+                </Link>
+
           </div>
         </div>
       );
     })}
   </div>
 </div>
-
-
-    </div>
+  </div>
   );
 }

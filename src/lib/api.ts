@@ -1,4 +1,5 @@
-import { Post, User } from '@/types';
+import { Post, User, CarSpecs } from '@/types';
+
 
 const API_BASE = 'https://jsonplaceholder.typicode.com';
 

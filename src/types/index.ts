@@ -3,6 +3,7 @@ export interface Post {
   title: string;
   body: string;
   userId: number;
+  description: string;
 }
 
 export interface User {

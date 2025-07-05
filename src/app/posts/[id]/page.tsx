@@ -7,15 +7,14 @@ import Image from "next/image";
 import AllCategorySection from "@/components/Allcategory";
 
 
-type PostPageProps = {
-  params: {
-    id: string;
-  };
-};
+interface PostPageProps {
+  params: Promise<{ id: string }>; // Update type to reflect params as a Promise
+}
 
 export default async function PostPage({ params }: PostPageProps) {
   try {
-    const post = await getPost(params.id);
+    const { id } = await params; // Await params to access id
+    const post = await getPost(id);
     const author = await getUser(post.userId);
     const specs = mockCarSpecs(post.id);
 
@@ -61,6 +60,8 @@ export default async function PostPage({ params }: PostPageProps) {
   src={car.src}
   alt="Test Car"
   className="w-full h-96 object-cover rounded-lg"
+  width={500}
+  height={300}
 />
           </div>
 
