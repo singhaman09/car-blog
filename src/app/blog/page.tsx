@@ -147,7 +147,7 @@ export default function AllPostsPage() {
           key={post.id}
           className="flex bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-300"
         >
-          {/* Left Image */}
+        
           <Image
             src={imageSrc}
             alt={post.title}
@@ -155,8 +155,6 @@ export default function AllPostsPage() {
             height={240}
             className="object-cover w-[320px] h-[240px]"
           />
-
-          {/* Right Content */}
           <div className="p-6 flex flex-col justify-between flex-1">
             <div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">

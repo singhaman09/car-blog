@@ -6,12 +6,13 @@ import { Post, User } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import button from "./assest/Group 8.png";
-// Top of your file
 import r1 from './assest/r1.png';
 import r2 from './assest/r2.png';
 import r3 from './assest/r3.png';
 import r4 from './assest/r4.png';
 import AllCategorySection from "../components/Allcategory";
+import Testimonials from "@/components/Testimonials";
+import NewTechnology from "@/components/NewTechnology";
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -21,9 +22,6 @@ export default function Home() {
   const [searchQuery] = useState("");
   const [selectedCategory] = useState("All");
   const newTechImages = [r1, r2, r3, r4];
-
-  // const categories = ["EV", "Hybrid", "Luxury", "SUV"];
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -203,93 +201,8 @@ export default function Home() {
           </div>
         </section>
        <AllCategorySection/>
-
-        {/* Testimonials */}
-        <section className="relative left-1/2 right-1/2 ml-[-49.7vw] mr-[-50vw] w-screen bg-gray-900 text-white py-19 mt-16">
-  <div className="max-w-[90rem] mx-auto px-6">
-    <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <p className="text-sm uppercase tracking-wide text-gray-400 mb-2">TESTIMONIALS</p>
-                <h2 className="text-4xl font-bold mb-6">
-                  What people say<br />
-                  about our blog
-                </h2>
-                <p className="text-gray-300 text-lg">
-                  Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor.
-                </p>
-              </div>
-
-              <div className="relative">
-                <div className="mb-8">
-                  <p className="text-xl leading-relaxed mb-6">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold">JV</span>
-                    </div>
-                    <div>
-                      <h4 className="font-bold">Jonathan Vallem</h4>
-                      <p className="text-sm text-gray-400">New York</p>
-                      <p className="text-sm text-gray-400">USA</p>
-                    </div>
-                  </div>
-
-                  <div className="flex space-x-2">
-                    <button className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                      </svg>
-                    </button>
-                    <button className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                      </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="mt-16">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold py-4">New Technology</h2>
-            <p className="text-gray-600 cursor-pointer hover:text-gray-800">See all</p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {posts.slice(0, 4).map((post, index) => {
-              const author = users.find((user) => user.id === post.userId);
-              return author ? (
-                <div key={post.id} className="bg-[#F4F0F8] group cursor-pointer hover:border-2 border-black rounded-lg p-5 hover:shadow-lg transition-shadow">
-                  <div className="relative overflow-hidden rounded-lg mb-4">
-                    <Image
-                      src={newTechImages[index]}
-                      alt={`New Technology ${index + 1}`}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2 line-clamp-2 group-hover:text-red-500 transition-colors">
-                    {post.title}
-                  </h3>
-                  <div className="flex items-center space-x-2 text-sm text-gray-500">
-                    <div className="flex items-center space-x-1">
-                      <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
-                      <span>{author.name}</span>
-                    </div>
-                    <span>•</span>
-                    <span>Dec 15</span>
-                  </div>
-                </div>
-              ) : null;
-            })}
-          </div>
-        </section>
+        <Testimonials />
+        <NewTechnology posts={posts} users={users} newTechImages={newTechImages} />
 
       </div>
     </>

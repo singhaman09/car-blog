@@ -24,7 +24,7 @@ body,html {
   padding: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: poppins sans-serif;
+  font-family: poppins semibold;
 
   /* background-color: #1a1a1a; */
   /* color: #fff; */

@@ -1,5 +1,7 @@
 'use client';
 import { useState } from 'react';
+import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -8,38 +10,23 @@ export default function Contact() {
     subject: '',
     message: ''
   });
-  const [errors, setErrors] = useState<{[key: string]: string}>({});
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const validateForm = () => {
-    const newErrors: {[key: string]: string} = {};
-    
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
-    
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
-    }
-    
-    if (!formData.subject.trim()) {
-      newErrors.subject = 'Subject is required';
-    }
-    
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    }
-    
+    const newErrors: { [key: string]: string } = {};
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
+    if (!formData.subject.trim()) newErrors.subject = 'Subject is required';
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (validateForm()) {
-      alert('Thank you for your message! We\'ll get back to you soon.');
+      alert("Thank you for your message! We'll get back to you soon.");
       setFormData({ name: '', email: '', subject: '', message: '' });
       setErrors({});
     }
@@ -48,163 +35,115 @@ export default function Contact() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
   };
 
   return (
-    <div className="container mx-auto px-6 py-16">
-      <div className="max-w-4xl mx-auto">
+    <div className="bg-[#f9f9fb] py-12 px-6">
+      <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Get In Touch</h1>
-          <p className="text-xl text-gray-600">
-            Have a question, suggestion, or just want to say hello? We had love to hear from you.
-          </p>
+          <h1 className="text-4xl font-bold mb-4 text-[#232536]">Get In Touch</h1>
+          <p className="text-lg text-gray-600">Have a question, suggestion, or just want to say hello? We'd love to hear from you.</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Information */}
+          {/* Contact Info */}
           <div>
-            <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
-            
+            <h2 className="text-2xl font-bold mb-6 text-[#232536]">Contact Information</h2>
             <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center text-white">
-                  📧
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">Email</h3>
-                  <p className="text-gray-600">hello@carblog.com</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center text-white">
-                  📱
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">Phone</h3>
-                  <p className="text-gray-600">+1 (555) 123-4567</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center text-white">
-                  📍
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">Address</h3>
-                  <p className="text-gray-600">123 Car Street<br />Auto City, AC 12345</p>
-                </div>
-              </div>
+              <ContactItem icon={<FiMail className="text-xl" />} label="Email" value="hello@carblog.com" />
+              <ContactItem icon={<FiPhone className="text-xl" />} label="Phone" value="+1 (555) 123-4567" />
+              <ContactItem
+                icon={<FiMapPin className="text-xl" />}
+                label="Address"
+                value="123 Car Street\nAuto City, AC 12345"
+              />
             </div>
-            
-            <div className="mt-8">
-              <h3 className="font-semibold mb-4">Follow Us</h3>
+
+            <div className="mt-10">
+              <h3 className="font-semibold mb-4 text-gray-700">Follow Us</h3>
               <div className="flex space-x-4">
-                <button className="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-secondary hover:text-white transition-colors">
-                  📘
-                </button>
-                <button className="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-secondary hover:text-white transition-colors">
-                  🐦
-                </button>
-                <button className="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-secondary hover:text-white transition-colors">
-                  📷
-                </button>
-                <button className="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-secondary hover:text-white transition-colors">
-                  💼
-                </button>
+                {[
+                  { icon: <FaFacebookF />, color: 'text-blue-600' },
+                  { icon: <FaTwitter />, color: 'text-sky-500' },
+                  { icon: <FaInstagram />, color: 'text-pink-500' },
+                  { icon: <FaLinkedinIn />, color: 'text-blue-800' }
+                ].map((item, i) => (
+                  <button
+                    key={i}
+                    className={`w-10 h-10 border border-gray-300 hover:bg-[#232536] text-[#232536] hover:text-white rounded-full flex items-center justify-center transition-colors text-lg`}
+                  >
+                    {item.icon}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
 
           {/* Contact Form */}
-          <div>
+          <div className="bg-white rounded-2xl shadow-lg p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-semibold mb-2">
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 rounded-lg border ${
-                    errors.name ? 'border-red-500' : 'border-gray-300'
-                  } focus:ring-2 focus:ring-secondary focus:border-transparent`}
-                  placeholder="Your full name"
-                />
-                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
-              </div>
+              {['name', 'email', 'subject'].map(field => (
+                <div key={field}>
+                  <label htmlFor={field} className="block text-sm font-semibold mb-2 capitalize text-[#232536]">
+                    {field} *
+                  </label>
+                  <input
+                    id={field}
+                    name={field}
+                    type={field === 'email' ? 'email' : 'text'}
+                    value={(formData as any)[field]}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 rounded-lg border ${
+                      errors[field] ? 'border-red-500' : 'border-gray-300'
+                    } focus:ring-2 focus:ring-[#232536] focus:border-transparent`}
+                    placeholder={`Enter your ${field}`}
+                  />
+                  {errors[field] && <p className="text-red-500 text-sm mt-1">{errors[field]}</p>}
+                </div>
+              ))}
 
               <div>
-                <label htmlFor="email" className="block text-sm font-semibold mb-2">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 rounded-lg border ${
-                    errors.email ? 'border-red-500' : 'border-gray-300'
-                  } focus:ring-2 focus:ring-secondary focus:border-transparent`}
-                  placeholder="your.email@example.com"
-                />
-                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="block text-sm font-semibold mb-2">
-                  Subject *
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 rounded-lg border ${
-                    errors.subject ? 'border-red-500' : 'border-gray-300'
-                  } focus:ring-2 focus:ring-secondary focus:border-transparent`}
-                  placeholder="What's this about?"
-                />
-                {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-semibold mb-2">
+                <label htmlFor="message" className="block text-sm font-semibold mb-2 text-[#232536]">
                   Message *
                 </label>
                 <textarea
                   id="message"
                   name="message"
+                  rows={6}
                   value={formData.message}
                   onChange={handleChange}
-                  rows={6}
                   className={`w-full px-4 py-3 rounded-lg border ${
                     errors.message ? 'border-red-500' : 'border-gray-300'
-                  } focus:ring-2 focus:ring-secondary focus:border-transparent resize-none`}
-                  placeholder="Tell us more about your inquiry..."
+                  } focus:ring-2 focus:ring-[#232536] focus:border-transparent resize-none`}
+                  placeholder="Write your message here..."
                 />
                 {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-secondary text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
+                className="w-full bg-[#232536] text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-opacity-90 transition-colors"
               >
-                Send Message
+              Send Message
               </button>
             </form>
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function ContactItem({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+  return (
+    <div className="flex items-start space-x-4">
+      <div className="w-12 h-12 bg-[#232536] text-white rounded-lg flex items-center justify-center">{icon}</div>
+      <div>
+        <h3 className="font-semibold text-[#232536]">{label}</h3>
+        <p className="text-gray-600 whitespace-pre-line">{value}</p>
       </div>
     </div>
   );

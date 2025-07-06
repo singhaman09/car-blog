@@ -10,15 +10,19 @@ interface Props {
 
 export default function CarPostCard({ post, author, category }: Props) {
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 my-4">
+   <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 my-4 w-full">
       <div className="relative">
-        <Image
-  src={car.src}
-  alt="Test Car"
-  className="w-full h-96 object-cover rounded-lg"
-  width={500}
-  height={300}
-/>
+        <div className="w-full">
+  <Image
+    src={car}
+    alt="Test Car"
+    width={1200}
+    height={600}
+    className="w-full h-auto max-h-[400px] object-cover sm:rounded-lg"
+    priority
+  />
+</div>
+
 
         <div className="absolute top-4 left-4">
           <span className="bg-secondary text-white px-3 py-1 rounded-full text-sm font-semibold">
