@@ -19,17 +19,17 @@ export default function About() {
         </h1>
 
         <div className="text-gray-700 text-lg leading-relaxed mb-10 text-center max-w-3xl mx-auto">
-          Welcome to <strong>CarBlog</strong> – your trusted hub for car enthusiasts, buyers, and casual readers. We bring you honest, practical, and exciting automotive content in one place.
+          Welcome to <strong>CarBlog</strong> your trusted hub for car enthusiasts, buyers, and casual readers. We bring you honest, practical, and exciting automotive content in one place.
         </div>
         <section className="mb-16">
           <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
             <Users className="w-5 h-5" /> Why CarBlog Exists
           </h2>
           <p className="mb-4 text-gray-600">
-            In today’s fast-evolving automotive world, it’s hard to keep up. From electric cars to self-driving features, there's a lot to consider before making a decision.
+            In todays fast-evolving automotive world, it is hard to keep up. From electric cars to self-driving features, there is a lot to consider before making a decision.
           </p>
           <p className="text-gray-600">
-            That’s where we come in — <strong>CarBlog bridges the gap</strong> with reviews, tips, and insights that help you stay ahead confidently.
+            Thats where we come in — <strong>CarBlog bridges the gap</strong> with reviews, tips, and insights that help you stay ahead confidently.
           </p>
         </section>
         <section className="mb-16">
@@ -49,10 +49,10 @@ export default function About() {
             <Code2 className="w-5 h-5" /> Our Tech Stack
           </h2>
           <ul className="list-disc list-inside space-y-2 text-gray-700 pl-2">
-            <li><strong>Next.js 14</strong> – Powerful React framework with App Router.</li>
-            <li><strong>TypeScript</strong> – Safer, cleaner code.</li>
-            <li><strong>Tailwind CSS</strong> – Fast styling and responsive design.</li>
-            <li><strong>Vercel</strong> – Lightning-fast deployment and CI/CD.</li>
+            <li><strong>Next.js 14</strong> :Powerful React framework with App Router.</li>
+            <li><strong>TypeScript</strong> :Safer, cleaner code.</li>
+            <li><strong>Tailwind CSS</strong> :Fast styling and responsive design.</li>
+            <li><strong>Vercel</strong> :Lightning-fast deployment and CI/CD.</li>
           </ul>
         </section>
 

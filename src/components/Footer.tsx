@@ -40,7 +40,7 @@ const Footer = () => {
             <span className="text-lg font-bold group-hover:text-[#FFD6D6] transition">Car Blog</span>
           </div>
           <nav className="flex flex-wrap justify-center lg:justify-end gap-4 text-sm sm:text-base text-gray-300">
-            {['Home', 'Blog', 'About', 'Contact', 'Privacy Policy'].map((item, i) => (
+            {['Home', 'Blog', 'About', 'Contact', 'Privacy Policy'].map((item) => (
               <a
                 key={item}
                 href={item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`}

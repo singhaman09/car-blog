@@ -4,12 +4,15 @@ import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+ type FormFields = 'name' | 'email' | 'subject' | 'message';
+
+const [formData, setFormData] = useState<Record<FormFields, string>>({
+  name: '',
+  email: '',
+  subject: '',
+  message: ''
+});
+
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const validateForm = () => {
@@ -45,7 +48,7 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4 text-[#232536]">Get In Touch</h1>
-          <p className="text-lg text-gray-600">Have a question, suggestion, or just want to say hello? We'd love to hear from you.</p>
+          <p className="text-lg text-gray-600">Have a question, suggestion, or just want to say hello? We had love to hear from you.</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
@@ -94,7 +97,7 @@ export default function Contact() {
                     id={field}
                     name={field}
                     type={field === 'email' ? 'email' : 'text'}
-                    value={(formData as any)[field]}
+                    value={formData[field as FormFields]}
                     onChange={handleChange}
                     className={`w-full px-4 py-3 rounded-lg border ${
                       errors[field] ? 'border-red-500' : 'border-gray-300'
