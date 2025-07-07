@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
+import { toast } from "sonner";
 export default function Contact() {
  type FormFields = 'name' | 'email' | 'subject' | 'message';
 
@@ -29,7 +30,9 @@ const [formData, setFormData] = useState<Record<FormFields, string>>({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      alert("Thank you for your message! We'll get back to you soon.");
+      toast.success("Message sent successfully!", {
+        description: "We'll get back to you soon.",
+      });
       setFormData({ name: '', email: '', subject: '', message: '' });
       setErrors({});
     }

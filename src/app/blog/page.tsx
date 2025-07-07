@@ -9,6 +9,8 @@ import r2 from '../assest/c2.png';
 import r3 from '../assest/c3.png';
 import r4 from '../assest/c4.png';
 import Link from "next/link";
+import SearchBar from "@/components/SearchBar";
+import CategoryFilter from "@/components/CategoryFilter";
 const newTechImages = [r1, r2, r3, r4];
 
 export default function AllPostsPage() {
@@ -16,8 +18,9 @@ export default function AllPostsPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [searchQuery] = useState("");
-  const [selectedCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+const availableModels = ['SUV', 'Sedan', 'Hatchback'];
 
   useEffect(() => {
     async function fetchData() {
@@ -130,6 +133,15 @@ export default function AllPostsPage() {
 </section>
       {/* Posts Section */}
    <div className="container mx-auto px-10 py-16 bg-gradient-to-b from-gray-100 to-gray-50 cursor-pointer">
+    <SearchBar onSearch={setSearchQuery} />
+    {filteredPosts.length > 0 && (
+  <CategoryFilter
+    categories={availableModels}
+    selectedCategory={selectedCategory}
+    onCategoryChange={setSelectedCategory}
+  />
+)}
+
   <h2 className="text-4xl font-extrabold text-gray-900 mb-10 text-center tracking-tight">
     All Posts
   </h2>
